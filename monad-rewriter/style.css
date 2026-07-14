@@ -1,0 +1,204 @@
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: system-ui, sans-serif;
+  background: #f4f4f6;
+  color: #1a1a1a;
+}
+
+body { display: flex; flex-direction: column; }
+
+header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 16px;
+  background: #2d3548;
+  color: #fff;
+}
+header h1 { margin: 0; font-size: 17px; font-weight: 600; }
+header .tagline { font-size: 13px; color: #b8c0d4; }
+
+main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(180px, 220px) minmax(280px, 380px) 1fr;
+  gap: 10px;
+  padding: 10px;
+  min-height: 0;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: #fff;
+  border: 1px solid #d5d7de;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.panel h2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 7px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+  background: #eef0f4;
+  border-bottom: 1px solid #d5d7de;
+}
+.panel h2 .buttons { display: flex; gap: 6px; }
+.panel h2 button {
+  font-size: 12px;
+  padding: 2px 9px;
+  border: 1px solid #aab;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+.panel h2 button:hover:enabled { background: #dde3f0; }
+.panel h2 button:disabled { opacity: 0.45; cursor: default; }
+
+/* ---- editors (textarea + highlight backdrop) ---- */
+
+.editor { position: relative; flex: 1; min-height: 0; }
+.editor .backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.editor-text {
+  margin: 0;
+  width: 100%;
+  padding: 8px 10px;
+  font: 14px/1.5 "SF Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  tab-size: 4;
+}
+.editor pre.hl { min-height: 100%; color: transparent; }
+.editor textarea {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  resize: none;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #1a1a1a;
+  caret-color: #000;
+}
+
+mark.err {
+  color: transparent;
+  background: rgba(255, 90, 90, 0.28);
+  border-radius: 2px;
+  text-decoration: underline wavy #d02c2c 1px;
+  text-decoration-skip-ink: none;
+}
+
+.bubble {
+  display: none;
+  position: fixed;
+  z-index: 50;
+  max-width: 300px;
+  padding: 6px 10px;
+  background: #2b2b33;
+  color: #fff;
+  font-size: 12.5px;
+  line-height: 1.4;
+  border-radius: 5px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.type { padding: 6px 10px; font: 13px "SF Mono", Menlo, Consolas, monospace; border-top: 1px solid #e2e4ea; min-height: 2.1em; }
+.type.ok { color: #17691e; }
+.type.bad { color: #b3261e; }
+
+/* ---- proof panel ---- */
+
+#proof { flex: 1; overflow: auto; padding: 8px 4px; min-height: 0; }
+#proof .placeholder { color: #888; font-size: 13.5px; padding: 4px 10px; }
+
+pre.term {
+  margin: 0 6px;
+  padding: 8px 10px;
+  font: 14px/1.5 "SF Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+pre.term.active {
+  background: #f7f9ff;
+  outline: 1px solid #ccd6f0;
+}
+
+.step-rule {
+  padding: 4px 10px 4px 34px;
+  font: 13px "SF Mono", Menlo, Consolas, monospace;
+  color: #777;
+}
+
+.term.active .node { cursor: pointer; border-radius: 2px; }
+.node.hovered { background: rgba(90, 130, 255, 0.14); }
+.node.selected {
+  background: rgba(255, 200, 60, 0.4);
+  outline: 1px solid #d99a00;
+}
+.node.occ {
+  background: rgba(60, 190, 120, 0.22);
+  outline: 1px dashed #1f9a63;
+}
+.node.occ-chosen {
+  background: rgba(60, 190, 120, 0.55);
+  outline: 1px solid #0d7a49;
+}
+
+#status {
+  padding: 7px 10px;
+  font-size: 12.5px;
+  color: #555;
+  border-top: 1px solid #e2e4ea;
+  min-height: 3.2em;
+}
+
+#rewrite-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 32%;
+  overflow: auto;
+  border-top: 1px solid #e2e4ea;
+}
+#rewrite-menu li {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f1f5;
+}
+#rewrite-menu li:hover { background: #edf2ff; }
+#rewrite-menu .key {
+  flex: none;
+  min-width: 1.5em;
+  padding: 1px 4px;
+  text-align: center;
+  font: bold 12px "SF Mono", Menlo, Consolas, monospace;
+  background: #3d4a68;
+  color: #fff;
+  border-radius: 3px;
+}
+#rewrite-menu .rule-name { flex: none; font-size: 13px; color: #333; }
+#rewrite-menu code {
+  font: 13px "SF Mono", Menlo, Consolas, monospace;
+  color: #566;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monadic Rewriter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Monadic Rewriter</h1>
+    <span class="tagline">equational proofs for a two-monad calculus</span>
+  </header>
+  <main>
+    <section class="panel" id="panel-sig">
+      <h2>Signature</h2>
+      <div id="sig-editor"></div>
+    </section>
+    <section class="panel" id="panel-term">
+      <h2>Term</h2>
+      <div id="term-editor"></div>
+      <div id="term-type" class="type"></div>
+    </section>
+    <section class="panel" id="panel-proof">
+      <h2>Proof
+        <span class="buttons">
+          <button id="restart-btn" title="Reload the proof from the term panel">Restart</button>
+          <button id="undo-btn" title="Remove the last proof step">Undo</button>
+          <button id="export-btn" title="Download the proof as a text file">Export</button>
+        </span>
+      </h2>
+      <div id="proof"></div>
+      <div id="status"></div>
+      <ul id="rewrite-menu"></ul>
+    </section>
+  </main>
+  <script src="js/ast.js"></script>
+  <script src="js/lexer.js"></script>
+  <script src="js/parser.js"></script>
+  <script src="js/typecheck.js"></script>
+  <script src="js/pretty.js"></script>
+  <script src="js/rewrite.js"></script>
+  <script src="js/ui-editor.js"></script>
+  <script src="js/ui-proof.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
