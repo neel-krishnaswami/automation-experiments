@@ -1,0 +1,5 @@
+# personal data: keep out of the public repo
+students.csv
+supervisor-prefs.csv
+allocation.csv
+__pycache__/
