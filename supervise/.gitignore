@@ -1,5 +1,12 @@
 # personal data: keep out of the public repo
 students.csv
-supervisor-prefs.csv
+preferences.csv
+groups.csv
+groups.md
 allocation.csv
+solved.csv
+assign.txt
+assign-revised.txt
+tex/
+
 __pycache__/

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Assign supervisors to supervision groups, per course, using z3.Optimize.
 
-Reads supervisor-prefs.csv, writes allocation.csv, and prints a report.
+Reads preferences.csv, writes solved.csv, and prints a report.
 See goal.md for the problem statement.
 """
 
@@ -13,8 +13,8 @@ import z3
 
 # ---------------------------------------------------------------- config
 
-PREFS = 'supervisor-prefs.csv'
-OUT = 'allocation.csv'
+PREFS = 'preferences.csv'
+OUT = 'solved.csv'
 
 GROUPS = {'1a': 3, '1b': 4}          # number of supervision groups per year
 WEEKS = 8                            # weeks per term
